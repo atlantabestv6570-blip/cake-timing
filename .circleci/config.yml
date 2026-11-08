@@ -1,0 +1,1469 @@
+version: 2.1
+
+jobs:
+  tr_mn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Build step-3 output
+          command: |
+            mkdir -p /tmp/batch-delta
+            set +o pipefail 2>/dev/null; bash -c "head -c 882318 /dev/urandom | base64" > /tmp/batch-delta/sha_ccd60f28925; true
+            wc -mcl /tmp/batch-delta/sha_ccd60f28925
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'sha_ccd60f28925'
+  DEV_STAGE_5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/sha_ccd60f28925 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  t_hat:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Timestamps trained with no errors
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/handler_sugar_omega" && ls -ld "/tmp/handler_sugar_omega" && rmdir "/tmp/handler_sugar_omega"; true ; } > /tmp/batch-delta/TCP-Bog
+            wc -mcl /tmp/batch-delta/TCP-Bog
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'TCP-Bog'
+  zed-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/TCP-Bog 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  ckpt-37026:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Sudden death rebuild
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; grep 'Slab' /proc/meminfo | nl; true ; } > /tmp/batch-delta/NICkElsurgE
+            wc -mcl /tmp/batch-delta/NICkElsurgE
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'NICkElsurgE'
+  fix-queue:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  cocoa_726:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Tomorrow rebuild the canary fleet
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; z=(shared lower mount guest); echo "${z[@]^^}"; true ; } > /tmp/batch-delta/6839ad2d07d9bfebc
+            wc -mcl /tmp/batch-delta/6839ad2d07d9bfebc
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - '6839ad2d07d9bfebc'
+  check-quick-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/6839ad2d07d9bfebc 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  quebec-pointer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Flush Limit 300
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; dirname "/tmp/archive-limit.txt"; true ; } > /tmp/batch-delta/rev-5003
+            wc -mcl /tmp/batch-delta/rev-5003
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'rev-5003'
+  wip-metrics:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/rev-5003 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  TAX-TYPE-IDX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Alongside that enroll the interns
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; echo -n 'status: ok' | sha224sum; true ; } > /tmp/batch-delta/mEmoCoPpErAZuReqUeUE
+            wc -mcl /tmp/batch-delta/mEmoCoPpErAZuReqUeUE
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'mEmoCoPpErAZuReqUeUE'
+  check-full-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/xx_aa0b85f8f04bd2 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  jun-build-pen:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: looping gif previews in background
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; cp /etc/passwd "/tmp/billing-v3.tmp" && gzip -f "/tmp/billing-v3.tmp" && ls -l "/tmp/billing-v3.tmp".gz; true ; } > /tmp/batch-delta/2SM
+            wc -mcl /tmp/batch-delta/2SM
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - '2SM'
+  Package_Service7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/xx_aa0b85f8f04bd2 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  playerObj:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Up next inform the account managers
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; find /var/log -maxdepth 3 -type l -name '*.log' -exec echo {} ';' 2>/dev/null | nl; true ; } > /tmp/batch-delta/xx_aa0b85f8f04bd2
+            wc -mcl /tmp/batch-delta/xx_aa0b85f8f04bd2
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'xx_aa0b85f8f04bd2'
+  ed-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/xx_aa0b85f8f04bd2 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  lima_papa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: offboarding retries 1
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; target_dir=scripts-kitchen && echo "[${target_dir//t/}]"; true ; } > /tmp/batch-delta/meadow.canvas
+            wc -mcl /tmp/batch-delta/meadow.canvas
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'meadow.canvas'
+  nov27-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/xx_aa0b85f8f04bd2 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  CNN2Header:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Nudge the team for round two
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; ls /usr/sbin| grep -v '^[a-m]'| sort| uniq --count; true ; } > /tmp/batch-delta/iter_472
+            wc -mcl /tmp/batch-delta/iter_472
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'iter_472'
+  node20-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/xx_aa0b85f8f04bd2 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  unit-bravo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: seedAllReplicationLag
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | tr ':' ' ' | nl | head -n 5; true ; } > /tmp/batch-delta/sha_662ae85
+            wc -mcl /tmp/batch-delta/sha_662ae85
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'sha_662ae85'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  tPxGjE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: NEEDS REVIEW double tap
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; seq 12 148 | awk '{print $1, $1*$1}' | tail -3; true ; } > /tmp/batch-delta/audit.log.14
+            wc -mcl /tmp/batch-delta/audit.log.14
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'audit.log.14'
+  rc-v5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  amber_rgb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Build step-3 output
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; printenv | head -n 20 | sed 's/=.*//' | awk '{print toupper(substr($0,1,1)) substr($0,2)}'; true ; } > /tmp/batch-delta/error.log.11
+            wc -mcl /tmp/batch-delta/error.log.11
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'error.log.11'
+  DeploySuite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  oyd6:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Give me the CVE list
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; echo '50/50' && echo "what's next?"; true ; } > /tmp/batch-delta/CPcj4Ce
+            wc -mcl /tmp/batch-delta/CPcj4Ce
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'CPcj4Ce'
+  sep13-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/CPcj4Ce 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  USB2Message:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Rerun CI
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; ls --reverse --hide="*.conf" /usr/share/doc | xargs; true ; } > /tmp/batch-delta/Bramble
+            wc -mcl /tmp/batch-delta/Bramble
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'Bramble'
+  realease:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  stash-badge:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Poll Oslo Edition
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; awk -F: '$4 != "" { print $1 }' /etc/group | head -n 2 | shuf -n 2; true ; } > /tmp/batch-delta/r4v3n.bund1e.c4nyon.gl4c13r.pay1o4d
+            wc -mcl /tmp/batch-delta/r4v3n.bund1e.c4nyon.gl4c13r.pay1o4d
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'r4v3n.bund1e.c4nyon.gl4c13r.pay1o4d'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  sierra_alfa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Cache the vocab file with lr 3e4
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; echo 'UPPER CASE' | cut -c1-10; true ; } > /tmp/batch-delta/27.10.2017
+            wc -mcl /tmp/batch-delta/27.10.2017
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - '27.10.2017'
+  biuld:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/xx_aa0b85f8f04bd2 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  score_set_setting_stale:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Retrain the eval metrics no grad
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd | gzip -d | head -n 2; true ; } > /tmp/batch-delta/stage6fbe
+            wc -mcl /tmp/batch-delta/stage6fbe
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'stage6fbe'
+  feat-5684:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  qg9qeg4jxjl7ip:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Vortex the extraction kit overnight
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; ln -sf /etc/os-release "/tmp/levelsplit.dat" && stat -c %N "/tmp/levelsplit.dat"; true ; } > /tmp/batch-delta/spark
+            wc -mcl /tmp/batch-delta/spark
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'spark'
+  DATA-872:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/spark 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  sumReleaseAtIndex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: load cold room first
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; tar -zcf /tmp/todosalesvision.tar.gz -C /etc hosts && tar -xzOf /tmp/todosalesvision.tar.gz hosts | head -n3; true ; } > /tmp/batch-delta/c113nt.mo1ten
+            wc -mcl /tmp/batch-delta/c113nt.mo1ten
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'c113nt.mo1ten'
+  build-full-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/c113nt.mo1ten 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  ID-STATUS-DTL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: ya poll the bootloader
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; gzip -9c /etc/passwd > "/tmp/silver_hand_2019-03-15.gz" && gzip -l "/tmp/silver_hand_2019-03-15.gz"; true ; } > /tmp/batch-delta/snapshot-2517
+            wc -mcl /tmp/batch-delta/snapshot-2517
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'snapshot-2517'
+  API-76:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/snapshot-2517 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  fg-ebony:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Would you scan the key ring
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; mkdir -p "/dev/shm/signalrouter-0521" && head -c 19159 /dev/urandom >"/dev/shm/signalrouter-0521"/blob && du -sh "/dev/shm/signalrouter-0521"; true ; } > /tmp/batch-delta/232.141.92
+            wc -mcl /tmp/batch-delta/232.141.92
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - '232.141.92'
+  greg-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/232.141.92 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  yrrex5fcam:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Give me the spool directory
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; find /var/log -maxdepth 2 -type d -name '*.log' -links +1 -exec ls -ld {} + 2>/dev/null | xargs -r ls -ld | head -n 5; true ; } > /tmp/batch-delta/ECHohaWK
+            wc -mcl /tmp/batch-delta/ECHohaWK
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'ECHohaWK'
+  anothr-run-60:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  trackUrl:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: The duplicate rows validated
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; grep -v -m1 --colour=auto fi ~/.bashrc | nl; true ; } > /tmp/batch-delta/a18cfd0f-e11d
+            wc -mcl /tmp/batch-delta/a18cfd0f-e11d
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'a18cfd0f-e11d'
+  dan-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  panWorkerRequest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Build step-3 output
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; for entry in {1..9}; do printf '%02d\n' $entry; done | sort; true ; } > /tmp/batch-delta/20220201
+            wc -mcl /tmp/batch-delta/20220201
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - '20220201'
+  release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  userDidLoad:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: gonna charge the journal entries
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; awk -F: '{print $3}' /etc/passwd | tac; true ; } > /tmp/batch-delta/ember.cobalt.coin.savanna.glint
+            wc -mcl /tmp/batch-delta/ember.cobalt.coin.savanna.glint
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'ember.cobalt.coin.savanna.glint'
+  APP-879:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  bugfix_close_lock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: SRE 18 Q3 Number Review
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; ls -d /usr/bin/z* | xargs -n1 dirname | sort -u | awk -F/ '{print NF-1}'; true ; } > /tmp/batch-delta/7d791e8f377b064f41
+            wc -mcl /tmp/batch-delta/7d791e8f377b064f41
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - '7d791e8f377b064f41'
+  wip-metrics-glitch:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  animate_alive_future:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Rebuild Env Vars
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; function prompt_line { local s=0; for n; do s=$((s + n)); done; echo $s; }; prompt_line 6 42 7 31 50 46; true ; } > /tmp/batch-delta/EMBeRdeSeRTsparK
+            wc -mcl /tmp/batch-delta/EMBeRdeSeRTsparK
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'EMBeRdeSeRTsparK'
+  delta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  TME-OWED-C:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Ad lib benchmark
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; echo x >/tmp/violet_diary.txt && ln -f /tmp/violet_diary.txt "/tmp/banner_2026-03.copy" && stat -c %h /tmp/violet_diary.txt; true ; } > /tmp/batch-delta/pixelmaplegreen
+            wc -mcl /tmp/batch-delta/pixelmaplegreen
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'pixelmaplegreen'
+  build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+  xverax:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: My ragdoll unload
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; getent group | sort -n -t: -k 3 | cut -d ":" -f 1; true ; } > /tmp/batch-delta/a8eb67d8eb0
+            wc -mcl /tmp/batch-delta/a8eb67d8eb0
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'a8eb67d8eb0'
+  DATA-977:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Close upstream
+          command: |
+            sort -z /tmp/batch-delta/ECHohaWK 2>/dev/null | head -c 50 | wc -c || true
+      - run:
+          name: Fetch HEAD
+          command: git clone --depth 2 --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack cached data
+          command: tar --extract --xz -f release.tar.xz
+      - run:
+          command: sleep 30
+      - run:
+          command: "./run-task"
+
+  exitHeightBlock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Check with Yara first
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; sed 's|.*/||' /etc/shells | awk '{print length, $0}' | sort -u; true ; } > /tmp/batch-delta/232.141.92
+            wc -mcl /tmp/batch-delta/232.141.92
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - '232.141.92'
+  bitBuf:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Still the bank feed
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; lscpu|head -n3; true ; } > /tmp/batch-delta/spark
+            wc -mcl /tmp/batch-delta/spark
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'spark'
+  FinnTanaka:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Build step-3 output
+          command: |
+            mkdir -p /tmp/batch-delta
+            set +o pipefail 2>/dev/null; bash -c "head -c 882318 /dev/urandom | base64" > /tmp/batch-delta/sha_ccd60f28925; true
+            wc -mcl /tmp/batch-delta/sha_ccd60f28925
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'sha_ccd60f28925'
+  gu_US_messages:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: bits and bobs
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; : >"/tmp/PlumGalleryMock.csv" && ls -l "/tmp/PlumGalleryMock.csv"; true ; } > /tmp/batch-delta/TCP-Bog
+            wc -mcl /tmp/batch-delta/TCP-Bog
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'TCP-Bog'
+  URIWrapper:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Restock The Courier Pickup On Dock B
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; if [[ -c /dev/null ]] ; then echo good; fi; true ; } > /tmp/batch-delta/6839ad2d07d9bfebc
+            wc -mcl /tmp/batch-delta/6839ad2d07d9bfebc
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - '6839ad2d07d9bfebc'
+  mesage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Over SSH partition the staging table
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; find /var/tmp -executable -printf "%TF %TH:%TM %f\n" 2>/dev/null | sort | head -n 3; true ; } > /tmp/batch-delta/snapshot-2517
+            wc -mcl /tmp/batch-delta/snapshot-2517
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'snapshot-2517'
+  wip-pattern:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: MOV proxy config to region a
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; stdbuf -oL echo 'pack my box with five dozen liquor jugs'; true ; } > /tmp/batch-delta/CPcj4Ce
+            wc -mcl /tmp/batch-delta/CPcj4Ce
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'CPcj4Ce'
+  Util_17197:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Let the physics layers cook
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; nl -ba -w3 /etc/hosts|head; true ; } > /tmp/batch-delta/rev-5003
+            wc -mcl /tmp/batch-delta/rev-5003
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'rev-5003'
+  balloon-wagon:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/batch-delta
+      - run:
+          name: Ragdolls culled and verified
+          command: |
+            mkdir -p /tmp/batch-delta
+            { set +o pipefail 2>/dev/null; grep -H "Vm" /proc/self/status | nl; true ; } > /tmp/batch-delta/c113nt.mo1ten
+            wc -mcl /tmp/batch-delta/c113nt.mo1ten
+      - persist_to_workspace:
+          root: /tmp/batch-delta
+          paths:
+            - 'c113nt.mo1ten'
+workflows:
+  pipeline:
+    jobs:
+      - playerObj
+      - CNN2Header
+      - ed-test:
+          requires:
+            - playerObj
+            - CNN2Header
+      - node20-fmt:
+          requires:
+            - playerObj
+            - CNN2Header
+      - nov27-cleanup:
+          requires:
+            - playerObj
+            - CNN2Header
+      - biuld:
+          requires:
+            - playerObj
+            - CNN2Header
+      - check-full-integration-tests:
+          requires:
+            - playerObj
+            - CNN2Header
+      - Package_Service7:
+          requires:
+            - playerObj
+            - CNN2Header
+      - yrrex5fcam
+      - panWorkerRequest
+      - bugfix_close_lock
+      - anothr-run-60:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - release:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - wip-metrics-glitch:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - fix-queue:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - rc-v5:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - dan-ci:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - realease:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - DATA-977:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - APP-879:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - feat-5684:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - DeploySuite:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - build:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - spin-up:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - delta:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - break-prod:
+          requires:
+            - yrrex5fcam
+            - panWorkerRequest
+            - bugfix_close_lock
+      - fg-ebony
+      - exitHeightBlock:
+          requires:
+            - fg-ebony
+      - greg-ship:
+          requires:
+            - exitHeightBlock
+      - qg9qeg4jxjl7ip:
+          requires:
+            - exitHeightBlock
+      - bitBuf:
+          requires:
+            - qg9qeg4jxjl7ip
+      - DATA-872:
+          requires:
+            - bitBuf
+      - tr_mn:
+          requires:
+            - bitBuf
+      - FinnTanaka:
+          requires:
+            - tr_mn
+      - DEV_STAGE_5:
+          requires:
+            - FinnTanaka
+      - t_hat:
+          requires:
+            - FinnTanaka
+      - gu_US_messages:
+          requires:
+            - t_hat
+      - zed-build:
+          requires:
+            - gu_US_messages
+      - cocoa_726:
+          requires:
+            - gu_US_messages
+      - URIWrapper:
+          requires:
+            - cocoa_726
+      - check-quick-regression-suite:
+          requires:
+            - URIWrapper
+      - ID-STATUS-DTL:
+          requires:
+            - URIWrapper
+      - mesage:
+          requires:
+            - ID-STATUS-DTL
+      - API-76:
+          requires:
+            - mesage
+      - oyd6:
+          requires:
+            - mesage
+      - wip-pattern:
+          requires:
+            - oyd6
+      - sep13-smoke:
+          requires:
+            - wip-pattern
+      - quebec-pointer:
+          requires:
+            - wip-pattern
+      - Util_17197:
+          requires:
+            - quebec-pointer
+      - wip-metrics:
+          requires:
+            - Util_17197
+      - sumReleaseAtIndex:
+          requires:
+            - Util_17197
+      - balloon-wagon:
+          requires:
+            - sumReleaseAtIndex
+      - build-full-docker-image:
+          requires:
+            - balloon-wagon
